@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | Integrity Web Creations</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous">
+<style>
+:root{--dark:#000d1a;--dark2:#001529;--blue:#0052cc;--bright:#0066ff;--cyan:#00e5ff;--dim:#00bfff;--gray:rgba(255,255,255,.65);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--dark);color:white;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;overflow-x:hidden;}
+#webgl{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 50px;display:flex;justify-content:space-between;align-items:center;transition:all .5s ease;}
+nav.scrolled{background:rgba(0,13,26,.96);backdrop-filter:blur(20px);padding:14px 50px;border-bottom:1px solid rgba(0,229,255,.1);}
+.nav-logo{font-size:1.1em;font-weight:700;letter-spacing:.5px;text-decoration:none;color:white;}
+.nav-logo .accent{color:var(--cyan);}
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.87em;font-weight:400;letter-spacing:.5px;transition:color .3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan);}
+.nav-links a.active{font-weight:500;}
+.nav-cta{background:transparent;border:1.5px solid var(--cyan);color:var(--cyan);padding:10px 24px;border-radius:50px;font-size:.84em;font-weight:500;cursor:pointer;text-decoration:none;transition:all .3s ease;}
+.nav-cta:hover{background:var(--cyan);color:var(--dark);box-shadow:0 0 28px rgba(0,229,255,.55);transform:translateY(-2px);}
+footer{position:relative;z-index:2;background:rgba(0,5,15,.93);border-top:1px solid rgba(0,229,255,.08);padding:45px 50px;text-align:center;}
+.footer-logo{font-size:1.1em;font-weight:700;color:var(--cyan);margin-bottom:12px;}
+.footer-links{display:flex;justify-content:center;gap:28px;list-style:none;margin-bottom:20px;}
+.footer-links a{color:rgba(255,255,255,.4);font-size:.83em;text-decoration:none;transition:color .3s;}
+.footer-links a:hover{color:var(--cyan);}
+footer p{color:rgba(255,255,255,.28);font-size:.83em;line-height:1.8;}
+.btn-primary{background:linear-gradient(135deg,#0052cc,#00bfff);color:white;padding:17px 44px;border-radius:50px;font-size:1em;font-weight:600;cursor:pointer;border:none;text-decoration:none;transition:all .35s ease;box-shadow:0 0 45px rgba(0,102,255,.4);display:inline-block;}
+.btn-primary:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 18px 55px rgba(0,102,255,.6);}
+.btn-outline{background:transparent;color:white;padding:17px 44px;border-radius:50px;font-size:1em;font-weight:400;cursor:pointer;border:1.5px solid rgba(255,255,255,.3);text-decoration:none;transition:all .3s ease;display:inline-block;}
+.btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-4px);background:rgba(0,229,255,.05);}
+section{position:relative;z-index:2;}
+.sp{padding:120px 50px;}
+.inner{max-width:1200px;margin:0 auto;}
+.lbl{display:block;font-size:.77em;text-transform:uppercase;letter-spacing:3px;color:var(--cyan);font-weight:600;margin-bottom:18px;}
+.ttl{font-size:clamp(2em,4vw,3.8em);font-weight:700;line-height:1.08;letter-spacing:-1.5px;margin-bottom:20px;}
+.sub{font-size:1.1em;color:var(--gray);line-height:1.85;max-width:620px;font-weight:300;}
+.grad-text{background:linear-gradient(135deg,#0066ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.glow-line{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.22),transparent);position:relative;z-index:2;}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s ease,transform .9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+.page-hero{min-height:52vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;z-index:1;padding:130px 20px 60px;}
+.page-hero h1{font-size:clamp(2.5em,5.5vw,4.8em);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:18px;opacity:0;animation:fadeUp 1s ease .4s forwards;}
+.page-hero p{font-size:1.1em;color:rgba(255,255,255,.65);max-width:560px;margin:0 auto;font-weight:300;opacity:0;animation:fadeUp 1s ease .7s forwards;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media(max-width:960px){nav{padding:16px 22px;}nav.scrolled{padding:12px 22px;}.nav-links{display:none;}.sp{padding:80px 22px;}}
+
+#hero{position:relative;z-index:1;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px;}
+.hero-badge{display:inline-block;background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.22);color:var(--cyan);padding:8px 22px;border-radius:50px;font-size:.76em;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:35px;opacity:0;animation:fadeUp 1s ease .4s forwards;}
+.hero-title{font-size:clamp(2.8em,6.5vw,6em);font-weight:800;line-height:1.02;letter-spacing:-2.5px;margin-bottom:28px;opacity:0;animation:fadeUp 1s ease .7s forwards;}
+.hero-title .gradient{background:linear-gradient(135deg,#0066ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.18em;color:rgba(255,255,255,.7);max-width:580px;margin:0 auto 45px;line-height:1.75;font-weight:300;opacity:0;animation:fadeUp 1s ease 1s forwards;}
+.hero-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 1s ease 1.3s forwards;}
+.scroll-arrow{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);opacity:0;animation:fadeIn 1s ease 2s forwards;cursor:pointer;}
+.scroll-arrow span{display:block;width:24px;height:40px;border:2px solid rgba(255,255,255,.25);border-radius:12px;margin:0 auto 8px;position:relative;}
+.scroll-arrow span::before{content:'';position:absolute;width:4px;height:8px;background:var(--cyan);border-radius:2px;top:6px;left:50%;transform:translateX(-50%);animation:sb 1.8s ease infinite;}
+.scroll-arrow p{font-size:.7em;color:rgba(255,255,255,.3);letter-spacing:2.5px;text-transform:uppercase;text-align:center;}
+@keyframes sb{0%{top:6px;opacity:1}100%{top:22px;opacity:0}}
+#connectivity{background:linear-gradient(180deg,var(--dark) 0%,var(--dark2) 100%);}
+.conn-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:70px;}
+.dev-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.dev-card{background:rgba(0,82,204,.09);border:1px solid rgba(0,229,255,.12);border-radius:20px;padding:30px 20px;text-align:center;transition:all .4s ease;}
+.dev-card:hover{background:rgba(0,82,204,.2);border-color:rgba(0,229,255,.38);transform:translateY(-10px);box-shadow:0 28px 55px rgba(0,82,204,.22);}
+.dev-card h3{font-size:.95em;font-weight:600;margin-bottom:6px;}.dev-card p{font-size:.8em;color:var(--gray);}
+.dev-phone{width:52px;height:90px;border:2px solid rgba(0,229,255,.7);border-radius:12px;position:relative;margin:0 auto 16px;background:rgba(0,15,40,.6);}
+.dev-phone::before{content:'';position:absolute;width:16px;height:3px;background:rgba(0,229,255,.6);border-radius:2px;top:6px;left:50%;transform:translateX(-50%);}
+.dev-phone::after{content:'';position:absolute;width:20px;height:2.5px;background:rgba(0,229,255,.4);border-radius:2px;bottom:6px;left:50%;transform:translateX(-50%);}
+.phone-screen{position:absolute;top:16px;left:5px;right:5px;bottom:16px;overflow:hidden;}
+.psl{height:2px;border-radius:1px;margin-bottom:4px;background:rgba(0,229,255,.18);}
+.psl:first-child{width:60%;background:rgba(0,229,255,.32);}.psl:nth-child(2){width:90%;}.psl:nth-child(3){width:75%;}.psl:nth-child(4){width:85%;}
+.dev-monitor-wrap{margin:0 auto 16px;width:fit-content;}
+.dev-monitor{width:88px;height:58px;border:2px solid rgba(0,229,255,.65);border-radius:5px;background:rgba(0,15,40,.6);}
+.mon-screen{padding:6px;}.msl{height:2px;border-radius:1px;margin-bottom:3px;background:rgba(0,229,255,.15);}
+.msl:first-child{width:50%;background:rgba(0,229,255,.3);}.msl:nth-child(2){width:90%;}.msl:nth-child(3){width:70%;}
+.dev-stand{width:36px;height:14px;margin:0 auto;border-left:2px solid rgba(0,229,255,.45);border-right:2px solid rgba(0,229,255,.45);border-bottom:2px solid rgba(0,229,255,.45);border-radius:0 0 4px 4px;}
+.dev-base{width:50px;height:2px;margin:0 auto;background:rgba(0,229,255,.35);border-radius:2px;}
+.dev-browser{width:100px;height:72px;border:2px solid rgba(0,229,255,.65);border-radius:7px;overflow:hidden;margin:0 auto 16px;background:rgba(0,15,40,.6);}
+.brow-bar{height:14px;background:rgba(0,50,120,.5);border-bottom:1px solid rgba(0,229,255,.2);display:flex;align-items:center;padding:0 5px;gap:3px;}
+.brow-dot{width:4px;height:4px;border-radius:50%;background:rgba(0,229,255,.45);}
+.brow-url{flex:1;height:6px;background:rgba(0,229,255,.12);border-radius:3px;margin-left:3px;}
+.brow-body{padding:5px;}.bsl{height:2px;border-radius:1px;margin-bottom:3px;background:rgba(0,229,255,.15);}
+.bsl:first-child{width:55%;background:rgba(0,229,255,.3);}.bsl:nth-child(2){width:90%;}.bsl:nth-child(3){width:70%;}
+.dev-signal{width:72px;height:55px;display:flex;align-items:flex-end;justify-content:center;gap:5px;margin:0 auto 16px;}
+.sig-bar{width:11px;border-radius:2px 2px 0 0;animation:sigP 2s ease-in-out infinite;}
+.sig-bar:nth-child(1){height:16px;background:rgba(0,229,255,.5)}.sig-bar:nth-child(2){height:28px;background:rgba(0,229,255,.6);animation-delay:.15s}
+.sig-bar:nth-child(3){height:42px;background:rgba(0,229,255,.75);animation-delay:.3s}.sig-bar:nth-child(4){height:28px;background:rgba(0,229,255,.6);animation-delay:.45s}
+.sig-bar:nth-child(5){height:16px;background:rgba(0,229,255,.5);animation-delay:.6s}
+@keyframes sigP{0%,100%{filter:brightness(1)}50%{filter:brightness(1.8);box-shadow:0 0 8px rgba(0,229,255,.6)}}
+.conn-copy h3{font-size:2.1em;font-weight:700;line-height:1.25;margin-bottom:22px;letter-spacing:-.5px;}
+.conn-copy p{color:var(--gray);line-height:1.9;font-size:1em;margin-bottom:18px;}
+.conn-copy .ap{color:var(--cyan);font-weight:500;}
+#services{background:var(--dark);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:65px;}
+.svc-card{background:rgba(255,255,255,.033);border:1px solid rgba(255,255,255,.07);border-radius:24px;padding:42px 35px;transition:all .4s ease;position:relative;overflow:hidden;}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00bfff,transparent);opacity:0;transition:opacity .4s;}
+.svc-card:hover{background:rgba(0,82,204,.13);border-color:rgba(0,191,255,.26);transform:translateY(-12px);box-shadow:0 38px 75px rgba(0,82,204,.17);}
+.svc-card:hover::before{opacity:1;}
+.svc-icon{width:58px;height:58px;background:rgba(0,102,255,.1);border:1px solid rgba(0,229,255,.18);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:26px;transition:all .4s ease;}
+.svc-card:hover .svc-icon{background:rgba(0,102,255,.22);border-color:rgba(0,229,255,.45);box-shadow:0 0 22px rgba(0,229,255,.2);}
+.svc-icon i{font-size:1.4em;color:var(--cyan);}
+.svc-card h3{font-size:1.25em;font-weight:600;margin-bottom:14px;}
+.svc-card p{font-size:.91em;color:var(--gray);line-height:1.75;}
+#stats{background:linear-gradient(135deg,#000d1a,#001133);border-top:1px solid rgba(0,229,255,.1);border-bottom:1px solid rgba(0,229,255,.1);}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;}
+.stat{padding:55px 20px;}
+.stat-num{font-size:4em;font-weight:800;background:linear-gradient(135deg,#0066ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:12px;letter-spacing:-2px;}
+.stat-lbl{font-size:.82em;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.5px;}
+.home-cta{background:linear-gradient(135deg,var(--dark2),#001a44);text-align:center;padding:100px 20px;position:relative;z-index:2;}
+.home-cta h2{font-size:clamp(1.8em,4vw,3.2em);font-weight:700;margin-bottom:18px;letter-spacing:-1px;}
+.home-cta p{font-size:1.1em;color:var(--gray);margin-bottom:40px;max-width:540px;margin-left:auto;margin-right:auto;}
+.home-cta-btns{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;}
+.personal-promise{background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.15);border-radius:20px;padding:40px;margin-top:60px;display:flex;gap:25px;align-items:flex-start;}
+.promise-icon{width:54px;height:54px;background:rgba(0,102,255,.15);border:1px solid rgba(0,229,255,.25);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.promise-icon i{color:var(--cyan);font-size:1.3em;}
+.personal-promise h4{font-size:1.1em;font-weight:600;margin-bottom:10px;color:white;}
+.personal-promise p{color:var(--gray);font-size:.93em;line-height:1.8;}
+@media(max-width:900px){.svc-grid{grid-template-columns:repeat(2,1fr)}.conn-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr}}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<canvas id="webgl"></canvas>
+<nav id="nav"><a href="index.html" class="nav-logo"><span class="accent">integrity</span> WEB CREATIONS</a><ul class="nav-links"><li><a href="index.html" class="active">Home</a></li><li><a href="about.html">About</a></li><li><a href="why-we-matter.html">Why We Matter</a></li><li><a href="testimony.html">Clients</a></li><li><a href="contact.html">Contact</a></li></ul><a href="contact.html" class="nav-cta">Start a Project</a></nav>
+
+<section id="hero">
+  <div style="max-width:860px;position:relative;z-index:2;">
+    <div class="hero-badge">Beaufort, SC &mdash; Your Local Web Partner Since 2010</div>
+    <h1 class="hero-title">Your Business.<br><span class="gradient">Every Screen. Every Home.</span></h1>
+    <p class="hero-sub">A custom website, built exclusively for your business &mdash; handled, maintained, and grown by a local partner who knows your name, not just your account number.</p>
+    <div class="hero-btns">
+      <a href="contact.html" class="btn-primary">Let's Talk &rarr;</a>
+      <a href="why-we-matter.html" class="btn-outline">Why You Need This</a>
+    </div>
+  </div>
+  <div class="scroll-arrow" onclick="document.getElementById('connectivity').scrollIntoView({behavior:'smooth'})">
+    <span></span><p>Scroll</p>
+  </div>
+</section>
+
+<section id="connectivity" class="sp">
+  <div class="inner">
+    <span class="lbl reveal">Always On. Always Working.</span>
+    <h2 class="ttl reveal">Your Business &mdash;<br>On <span class="grad-text">Every Screen</span></h2>
+    <p class="sub reveal">From your neighbor's phone to a screen across the country &mdash; your business easy to find, easy to trust, and impossible to forget. We handle everything, so you never have to.</p>
+    <div class="conn-grid">
+      <div class="dev-cards">
+        <div class="dev-card reveal d1">
+          <div class="dev-monitor-wrap"><div class="dev-monitor"><div class="mon-screen"><div class="msl"></div><div class="msl"></div><div class="msl"></div></div></div><div class="dev-stand"></div><div class="dev-base"></div></div>
+          <h3>Desktop</h3><p>Commanding full-screen experiences</p>
+        </div>
+        <div class="dev-card reveal d2">
+          <div class="dev-phone"><div class="phone-screen"><div class="psl"></div><div class="psl"></div><div class="psl"></div><div class="psl"></div></div></div>
+          <h3>Mobile</h3><p>60% of searches happen on phones</p>
+        </div>
+        <div class="dev-card reveal d3">
+          <div class="dev-browser"><div class="brow-bar"><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-dot"></div><div class="brow-url"></div></div><div class="brow-body"><div class="bsl"></div><div class="bsl"></div><div class="bsl"></div></div></div>
+          <h3>Search</h3><p>Found first when customers look</p>
+        </div>
+        <div class="dev-card reveal d4">
+          <div class="dev-signal"><div class="sig-bar"></div><div class="sig-bar"></div><div class="sig-bar"></div><div class="sig-bar"></div><div class="sig-bar"></div></div>
+          <h3>Everywhere</h3><p>Social, local listings, all channels</p>
+        </div>
+      </div>
+      <div class="conn-copy reveal d2">
+        <h3>We Handle It. <span style="color:var(--cyan)">You Run Your Business.</span></h3>
+        <p>Your website is custom-built for your business and fully managed under your monthly plan &mdash; updates, security, performance, and ongoing improvements. You'll never have to think about the technical side again.</p>
+        <p>This is not a template. It is not a cookie-cutter solution. Every site is designed and built exclusively around your business, your customers, and your goals.</p>
+        <p class="ap">One point of contact. Direct access to A. Smalls. Your project always gets undivided attention.</p>
+        <div style="margin-top:30px;"><a href="about.html" class="btn-outline" style="font-size:.9em;padding:12px 30px;">Our Story &rarr;</a></div>
+      </div>
+    </div>
+
+    <div class="personal-promise reveal" style="margin-top:60px;">
+      <div class="promise-icon"><i class="fa-solid fa-user-tie"></i></div>
+      <div>
+        <h4>You Are Not a Number Here</h4>
+        <p>Integrity Web Creations is a small, local business &mdash; not a large agency with hundreds of clients. When you work with us, you work directly with A. Smalls. You get a real person, a real conversation, and a real commitment to making your business shine online. Every project receives personal, undivided attention from start to finish and beyond.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="glow-line"></div>
+
+<section id="services" class="sp">
+  <div class="inner">
+    <span class="lbl reveal">What We Do</span>
+    <h2 class="ttl reveal">Everything Your Digital<br>Presence Needs</h2>
+    <p class="sub reveal">From your first impression to your monthly performance &mdash; fully handled, fully managed, fully yours.</p>
+    <div class="svc-grid">
+      <div class="svc-card reveal d1"><div class="svc-icon"><i class="fa-solid fa-palette"></i></div><h3>Custom Web Design</h3><p>A site built from scratch, tailored to your exact business &mdash; your brand, your voice, your goals. No templates. No shortcuts. Nothing off the shelf.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon"><i class="fa-solid fa-pen-ruler"></i></div><h3>Brand Identity</h3><p>Logos, colors, and brand systems that tell your story at a glance and build instant trust with every customer who encounters your business.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><h3>Search Visibility (SEO)</h3><p>We make sure your customers find you &mdash; not your competitor. Strategic, ongoing optimization built into every site we deliver.</p></div>
+      <div class="svc-card reveal d4"><div class="svc-icon"><i class="fa-solid fa-cart-shopping"></i></div><h3>E-Commerce</h3><p>Sell your products and services online around the clock. A custom storefront built to represent your business and drive real revenue.</p></div>
+      <div class="svc-card reveal d5"><div class="svc-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div><h3>Monthly Maintenance</h3><p>Your site stays fast, secure, and current &mdash; always. Included in your monthly plan so you never have to worry about the technical side again.</p></div>
+      <div class="svc-card reveal d6"><div class="svc-icon"><i class="fa-solid fa-chart-line"></i></div><h3>Digital Marketing</h3><p>Targeted campaigns that reach your specific customers wherever they search, scroll, or browse. Built around your budget and your goals.</p></div>
+    </div>
+  </div>
+</section>
+<div class="glow-line"></div>
+
+<section id="stats" class="sp">
+  <div class="inner">
+    <div class="stats-row">
+      <div class="stat reveal d1"><div class="stat-num" data-target="15" data-suffix="+">0</div><div class="stat-lbl">Years of Experience</div></div>
+      <div class="stat reveal d2"><div class="stat-num" data-target="100" data-suffix="%">0</div><div class="stat-lbl">Client Satisfaction</div></div>
+      <div class="stat reveal d3"><div class="stat-num" data-target="24" data-suffix="/7">0</div><div class="stat-lbl">Your Site Is Live</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="home-cta">
+  <h2 class="reveal">Ready for a Website That <span class="grad-text">Works For You?</span></h2>
+  <p class="reveal d2">Custom-built. Fully managed. Built around your budget. Let's have a real conversation about what your business deserves online.</p>
+  <div class="home-cta-btns reveal d3">
+    <a href="contact.html" class="btn-primary">Start the Conversation &rarr;</a>
+    <a href="why-we-matter.html" class="btn-outline">Why It Matters</a>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-logo">integrity WEB CREATIONS</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="why-we-matter.html">Why We Matter</a></li>
+    <li><a href="testimony.html">Clients</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <p>Beaufort, South Carolina &nbsp;&middot;&nbsp; (843) 263-0072 &nbsp;&middot;&nbsp; asmalls@integritywebcreations.com</p>
+  <p style="margin-top:8px;">&copy; 2026 Integrity Web Creations &nbsp;&middot;&nbsp; Founded 2010 &nbsp;&middot;&nbsp; Built with Integrity. Engineered to Perform.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const canvas=document.getElementById('webgl');
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,2000);
+  camera.position.z=80;
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setSize(innerWidth,innerHeight);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setClearColor(0,0);
+  const N=200,npos=new Float32Array(N*3);
+  for(let i=0;i<N;i++){npos[i*3]=(Math.random()-.5)*300;npos[i*3+1]=(Math.random()-.5)*300;npos[i*3+2]=(Math.random()-.5)*300;}
+  const nGeo=new THREE.BufferGeometry();
+  nGeo.setAttribute('position',new THREE.BufferAttribute(npos,3));
+  const nMat=new THREE.PointsMaterial({color:0x00e5ff,size:1.2,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
+  const nodeSystem=new THREE.Points(nGeo,nMat);scene.add(nodeSystem);
+  const cv=[];
+  for(let i=0;i<N;i++){for(let j=i+1;j<N;j++){const dx=npos[i*3]-npos[j*3],dy=npos[i*3+1]-npos[j*3+1],dz=npos[i*3+2]-npos[j*3+2];if(Math.sqrt(dx*dx+dy*dy+dz*dz)<60&&Math.random()>.6)cv.push(npos[i*3],npos[i*3+1],npos[i*3+2],npos[j*3],npos[j*3+1],npos[j*3+2]);}}
+  const lGeo=new THREE.BufferGeometry();lGeo.setAttribute('position',new THREE.Float32BufferAttribute(cv,3));
+  const lMat=new THREE.LineBasicMaterial({color:0x0052cc,transparent:true,opacity:.3,blending:THREE.AdditiveBlending});
+  const lineSegs=new THREE.LineSegments(lGeo,lMat);scene.add(lineSegs);
+  const PC=30,cc=cv.length/6,pp=new Float32Array(PC*3),pd=[];
+  for(let i=0;i<PC;i++){const c=Math.floor(Math.random()*cc);pd.push({x1:cv[c*6],y1:cv[c*6+1],z1:cv[c*6+2],x2:cv[c*6+3],y2:cv[c*6+4],z2:cv[c*6+5],t:Math.random(),s:.005+Math.random()*.02});pp[i*3]=pd[i].x1;pp[i*3+1]=pd[i].y1;pp[i*3+2]=pd[i].z1;}
+  const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pp,3));
+  const pMat=new THREE.PointsMaterial({color:0xffffff,size:2.5,transparent:true,opacity:1,blending:THREE.AdditiveBlending,depthWrite:false});
+  scene.add(new THREE.Points(pGeo,pMat));
+  [[0,0,0],[-60,30,-40],[70,-20,-60],[0,-50,30]].forEach((p,i)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(i===0?6:3,16,16),new THREE.MeshBasicMaterial({color:i===0?0x0066ff:0x00e5ff,transparent:true,opacity:.15+Math.random()*.1,blending:THREE.AdditiveBlending}));m.position.set(...p);scene.add(m);});
+  let mx=0,my=0;
+  document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;});
+  const clk=new THREE.Clock();
+  function anim(){requestAnimationFrame(anim);const t=clk.getElapsedTime();nodeSystem.rotation.y=t*.04;nodeSystem.rotation.x=Math.sin(t*.025)*.15;lineSegs.rotation.y=t*.04;lineSegs.rotation.x=Math.sin(t*.025)*.15;camera.position.x+=(mx*10-camera.position.x)*.02;camera.position.y+=(-my*8-camera.position.y)*.02;camera.position.z=80+Math.sin(t*.06)*20;camera.lookAt(scene.position);const pa=pGeo.attributes.position.array;pd.forEach((p,i)=>{p.t+=p.s;if(p.t>1){p.t=0;const c=Math.floor(Math.random()*cc);p.x1=cv[c*6];p.y1=cv[c*6+1];p.z1=cv[c*6+2];p.x2=cv[c*6+3];p.y2=cv[c*6+4];p.z2=cv[c*6+5];}pa[i*3]=p.x1+(p.x2-p.x1)*p.t;pa[i*3+1]=p.y1+(p.y2-p.y1)*p.t;pa[i*3+2]=p.z1+(p.z2-p.z1)*p.t;});pGeo.attributes.position.needsUpdate=true;pMat.opacity=.7+Math.sin(t*5)*.3;nMat.opacity=.7+Math.sin(t*2)*.2;lMat.opacity=.2+Math.sin(t*1.5)*.1;renderer.render(scene,camera);}
+  anim();
+  window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+})();
+
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',scrollY>60));
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'';let cur=0;const step=target/55;const tmr=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(tmr);},28);co.unobserve(el);});},{threshold:.5});
+document.querySelectorAll('.stat-num').forEach(el=>co.observe(el));
+</script>
+</body>
+</html>
