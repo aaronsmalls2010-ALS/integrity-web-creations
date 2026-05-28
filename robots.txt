@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block common attack paths
+Disallow: /.env
+Disallow: /.env.local
+
+Sitemap: https://www.integritywebcreations.com/sitemap.xml
