@@ -342,20 +342,20 @@ try{(function(){
     for(let r=0;r<RI;r++){const row=[];for(let s=0;s<SP;s++){const a=ang[s]+(Math.random()-.5)*.06,R=rad[r]+(Math.random()-.5)*3,zC=-(R*R)/(MR*MR)*12;row.push(new THREE.Vector3(Math.cos(a)*R,Math.sin(a)*R,zB+zC+(Math.random()-.5)*4));}g.push(row);}
     const rv=[];for(let r=0;r<RI;r++)for(let s=0;s<SP;s++){const n=(s+1)%SP;rv.push(g[r][s].x,g[r][s].y,g[r][s].z,g[r][n].x,g[r][n].y,g[r][n].z);}
     const rg=new THREE.BufferGeometry();rg.setAttribute('position',new THREE.Float32BufferAttribute(rv,3));
-    web.add(new THREE.LineSegments(rg,new THREE.LineBasicMaterial({color:0x0077dd,transparent:true,opacity:.28*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
+    web.add(new THREE.LineSegments(rg,new THREE.LineBasicMaterial({color:0xccddee,transparent:true,opacity:.28*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
     const sv=[];for(let s=0;s<SP;s++){sv.push(0,0,zB,g[0][s].x,g[0][s].y,g[0][s].z);for(let r=0;r<RI-1;r++)sv.push(g[r][s].x,g[r][s].y,g[r][s].z,g[r+1][s].x,g[r+1][s].y,g[r+1][s].z);}
     const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sv,3));
-    web.add(new THREE.LineSegments(sg,new THREE.LineBasicMaterial({color:0x0099ff,transparent:true,opacity:.32*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
+    web.add(new THREE.LineSegments(sg,new THREE.LineBasicMaterial({color:0xddeeff,transparent:true,opacity:.32*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
     const dp=[0,0,zB];for(let r=0;r<RI;r++)for(let s=0;s<SP;s++)dp.push(g[r][s].x,g[r][s].y,g[r][s].z);
     const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.Float32BufferAttribute(dp,3));
-    web.add(new THREE.Points(dg,new THREE.PointsMaterial({color:0x00e5ff,size:1.8*sc,transparent:true,opacity:.7*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
+    web.add(new THREE.Points(dg,new THREE.PointsMaterial({color:0xeeffff,size:1.8*sc,transparent:true,opacity:.7*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
   }
   mkWeb(0,1,1);mkWeb(-38,.4,.82);mkWeb(38,.4,.82);
-  const gm=new THREE.MeshBasicMaterial({color:0x0066ff,transparent:true,opacity:.07,blending:THREE.AdditiveBlending});
+  const gm=new THREE.MeshBasicMaterial({color:0x99aacc,transparent:true,opacity:.07,blending:THREE.AdditiveBlending});
   const glow=new THREE.Mesh(new THREE.SphereGeometry(16,24,24),gm);scene.add(glow);
   const aN=90,ap=new Float32Array(aN*3);for(let i=0;i<aN;i++){ap[i*3]=(Math.random()-.5)*350;ap[i*3+1]=(Math.random()-.5)*350;ap[i*3+2]=(Math.random()-.5)*250;}
   const ag=new THREE.BufferGeometry();ag.setAttribute('position',new THREE.BufferAttribute(ap,3));
-  scene.add(new THREE.Points(ag,new THREE.PointsMaterial({color:0x3366cc,size:.8,transparent:true,opacity:.35,blending:THREE.AdditiveBlending,depthWrite:false})));
+  scene.add(new THREE.Points(ag,new THREE.PointsMaterial({color:0xaabbdd,size:.8,transparent:true,opacity:.35,blending:THREE.AdditiveBlending,depthWrite:false})));
   let mx=0,my=0;
   document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;});
   const clk=new THREE.Clock();
