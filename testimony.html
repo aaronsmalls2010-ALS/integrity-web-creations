@@ -190,33 +190,40 @@ section{position:relative;z-index:2;}
 try{(function(){
   const canvas=document.getElementById('webgl');
   const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.1,2000);
-  camera.position.z=80;
+  const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,2000);
+  camera.position.z=120;
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
   renderer.setSize(innerWidth,innerHeight);
   renderer.setPixelRatio(Math.min(devicePixelRatio,2));
   renderer.setClearColor(0,0);
-  const N=200,npos=new Float32Array(N*3);
-  for(let i=0;i<N;i++){npos[i*3]=(Math.random()-.5)*300;npos[i*3+1]=(Math.random()-.5)*300;npos[i*3+2]=(Math.random()-.5)*300;}
-  const nGeo=new THREE.BufferGeometry();
-  nGeo.setAttribute('position',new THREE.BufferAttribute(npos,3));
-  const nMat=new THREE.PointsMaterial({color:0x00e5ff,size:1.2,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false});
-  const nodeSystem=new THREE.Points(nGeo,nMat);scene.add(nodeSystem);
-  const cv=[];
-  for(let i=0;i<N;i++){for(let j=i+1;j<N;j++){const dx=npos[i*3]-npos[j*3],dy=npos[i*3+1]-npos[j*3+1],dz=npos[i*3+2]-npos[j*3+2];if(Math.sqrt(dx*dx+dy*dy+dz*dz)<60&&Math.random()>.6)cv.push(npos[i*3],npos[i*3+1],npos[i*3+2],npos[j*3],npos[j*3+1],npos[j*3+2]);}}
-  const lGeo=new THREE.BufferGeometry();lGeo.setAttribute('position',new THREE.Float32BufferAttribute(cv,3));
-  const lMat=new THREE.LineBasicMaterial({color:0x0052cc,transparent:true,opacity:.3,blending:THREE.AdditiveBlending});
-  const lineSegs=new THREE.LineSegments(lGeo,lMat);scene.add(lineSegs);
-  const PC=30,cc=cv.length/6,pp=new Float32Array(PC*3),pd=[];
-  for(let i=0;i<PC;i++){const c=Math.floor(Math.random()*cc);pd.push({x1:cv[c*6],y1:cv[c*6+1],z1:cv[c*6+2],x2:cv[c*6+3],y2:cv[c*6+4],z2:cv[c*6+5],t:Math.random(),s:.005+Math.random()*.02});pp[i*3]=pd[i].x1;pp[i*3+1]=pd[i].y1;pp[i*3+2]=pd[i].z1;}
-  const pGeo=new THREE.BufferGeometry();pGeo.setAttribute('position',new THREE.BufferAttribute(pp,3));
-  const pMat=new THREE.PointsMaterial({color:0xffffff,size:2.5,transparent:true,opacity:1,blending:THREE.AdditiveBlending,depthWrite:false});
-  scene.add(new THREE.Points(pGeo,pMat));
-  [[0,0,0],[-60,30,-40],[70,-20,-60],[0,-50,30]].forEach((p,i)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(i===0?6:3,16,16),new THREE.MeshBasicMaterial({color:i===0?0x0066ff:0x00e5ff,transparent:true,opacity:.15+Math.random()*.1,blending:THREE.AdditiveBlending}));m.position.set(...p);scene.add(m);});
+  const web=new THREE.Group();scene.add(web);
+  const SP=22,RI=10,MR=135;
+  function mkWeb(zB,oM,sc){
+    const ang=[],rad=[];
+    for(let i=0;i<SP;i++)ang.push(i/SP*Math.PI*2+(Math.random()-.5)*.12);
+    for(let i=1;i<=RI;i++)rad.push(i/RI*MR*sc);
+    const g=[];
+    for(let r=0;r<RI;r++){const row=[];for(let s=0;s<SP;s++){const a=ang[s]+(Math.random()-.5)*.06,R=rad[r]+(Math.random()-.5)*3,zC=-(R*R)/(MR*MR)*12;row.push(new THREE.Vector3(Math.cos(a)*R,Math.sin(a)*R,zB+zC+(Math.random()-.5)*4));}g.push(row);}
+    const rv=[];for(let r=0;r<RI;r++)for(let s=0;s<SP;s++){const n=(s+1)%SP;rv.push(g[r][s].x,g[r][s].y,g[r][s].z,g[r][n].x,g[r][n].y,g[r][n].z);}
+    const rg=new THREE.BufferGeometry();rg.setAttribute('position',new THREE.Float32BufferAttribute(rv,3));
+    web.add(new THREE.LineSegments(rg,new THREE.LineBasicMaterial({color:0x0077dd,transparent:true,opacity:.28*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
+    const sv=[];for(let s=0;s<SP;s++){sv.push(0,0,zB,g[0][s].x,g[0][s].y,g[0][s].z);for(let r=0;r<RI-1;r++)sv.push(g[r][s].x,g[r][s].y,g[r][s].z,g[r+1][s].x,g[r+1][s].y,g[r+1][s].z);}
+    const sg=new THREE.BufferGeometry();sg.setAttribute('position',new THREE.Float32BufferAttribute(sv,3));
+    web.add(new THREE.LineSegments(sg,new THREE.LineBasicMaterial({color:0x0099ff,transparent:true,opacity:.32*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
+    const dp=[0,0,zB];for(let r=0;r<RI;r++)for(let s=0;s<SP;s++)dp.push(g[r][s].x,g[r][s].y,g[r][s].z);
+    const dg=new THREE.BufferGeometry();dg.setAttribute('position',new THREE.Float32BufferAttribute(dp,3));
+    web.add(new THREE.Points(dg,new THREE.PointsMaterial({color:0x00e5ff,size:1.8*sc,transparent:true,opacity:.7*oM,blending:THREE.AdditiveBlending,depthWrite:false})));
+  }
+  mkWeb(0,1,1);mkWeb(-38,.4,.82);mkWeb(38,.4,.82);
+  const gm=new THREE.MeshBasicMaterial({color:0x0066ff,transparent:true,opacity:.07,blending:THREE.AdditiveBlending});
+  const glow=new THREE.Mesh(new THREE.SphereGeometry(16,24,24),gm);scene.add(glow);
+  const aN=90,ap=new Float32Array(aN*3);for(let i=0;i<aN;i++){ap[i*3]=(Math.random()-.5)*350;ap[i*3+1]=(Math.random()-.5)*350;ap[i*3+2]=(Math.random()-.5)*250;}
+  const ag=new THREE.BufferGeometry();ag.setAttribute('position',new THREE.BufferAttribute(ap,3));
+  scene.add(new THREE.Points(ag,new THREE.PointsMaterial({color:0x3366cc,size:.8,transparent:true,opacity:.35,blending:THREE.AdditiveBlending,depthWrite:false})));
   let mx=0,my=0;
   document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2;});
   const clk=new THREE.Clock();
-  function anim(){requestAnimationFrame(anim);const t=clk.getElapsedTime();nodeSystem.rotation.y=t*.04;nodeSystem.rotation.x=Math.sin(t*.025)*.15;lineSegs.rotation.y=t*.04;lineSegs.rotation.x=Math.sin(t*.025)*.15;camera.position.x+=(mx*10-camera.position.x)*.02;camera.position.y+=(-my*8-camera.position.y)*.02;camera.position.z=80+Math.sin(t*.06)*20;camera.lookAt(scene.position);const pa=pGeo.attributes.position.array;pd.forEach((p,i)=>{p.t+=p.s;if(p.t>1){p.t=0;const c=Math.floor(Math.random()*cc);p.x1=cv[c*6];p.y1=cv[c*6+1];p.z1=cv[c*6+2];p.x2=cv[c*6+3];p.y2=cv[c*6+4];p.z2=cv[c*6+5];}pa[i*3]=p.x1+(p.x2-p.x1)*p.t;pa[i*3+1]=p.y1+(p.y2-p.y1)*p.t;pa[i*3+2]=p.z1+(p.z2-p.z1)*p.t;});pGeo.attributes.position.needsUpdate=true;pMat.opacity=.7+Math.sin(t*5)*.3;nMat.opacity=.7+Math.sin(t*2)*.2;lMat.opacity=.2+Math.sin(t*1.5)*.1;renderer.render(scene,camera);}
+  function anim(){requestAnimationFrame(anim);const t=clk.getElapsedTime();web.rotation.z=t*.025;web.rotation.x=Math.sin(t*.018)*.12;web.rotation.y=Math.cos(t*.013)*.08;camera.position.x+=(mx*18-camera.position.x)*.025;camera.position.y+=(-my*14-camera.position.y)*.025;camera.position.z=120+Math.sin(t*.04)*8;camera.lookAt(scene.position);gm.opacity=.05+Math.sin(t*1.2)*.03;renderer.render(scene,camera);}
   anim();
   window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
 })();}catch(e){console.warn('WebGL background unavailable:',e);}
