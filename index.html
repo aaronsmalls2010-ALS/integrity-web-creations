@@ -199,6 +199,28 @@ section{position:relative;z-index:2;}
 .rf-success{display:none;text-align:center;padding:30px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.22);border-radius:12px;margin-top:20px;}
 .rf-success p{color:var(--gray);font-size:.95em;line-height:1.75;}
 @media(max-width:700px){.referral-form-wrap{padding:28px 20px;}.rf-row{grid-template-columns:1fr;}.reward-card{max-width:100%;}}
+#audit{background:linear-gradient(180deg,rgba(0,13,26,0) 0%,rgba(0,21,41,0.5) 100%);}
+.audit-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1040px;margin:0 auto;}
+.audit-checklist{list-style:none;margin:26px 0 24px;}
+.audit-checklist li{display:flex;align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.92em;color:rgba(255,255,255,.72);}
+.audit-checklist li:first-child{border-top:1px solid rgba(255,255,255,.06);}
+.audit-check{width:20px;height:20px;background:rgba(0,229,255,.10);border:1px solid rgba(0,229,255,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.audit-check svg{width:10px;height:10px;stroke:var(--cyan);stroke-width:2.8;fill:none;}
+.audit-promise{font-size:.82em;color:rgba(255,255,255,.35);font-style:italic;}
+.audit-card{background:rgba(0,13,26,0.75);border:1px solid rgba(0,229,255,.15);border-radius:20px;padding:40px 38px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.audit-card h3{font-size:1.15em;font-weight:700;margin-bottom:6px;}
+.ac-sub{font-size:.84em;color:rgba(255,255,255,.42);margin-bottom:26px;line-height:1.6;}
+.ac-field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px;}
+.ac-field label{font-size:.74em;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:600;}
+.ac-field input{background:rgba(0,229,255,0.04);border:1.5px solid rgba(0,229,255,0.18);border-radius:10px;padding:12px 15px;color:white;font-size:.92em;outline:none;transition:border-color .25s,box-shadow .25s;font-family:inherit;width:100%;}
+.ac-field input::placeholder{color:rgba(255,255,255,0.28);}
+.ac-field input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,0.10);}
+.ac-submit{margin-top:20px;}
+.ac-submit button{width:100%;padding:15px;font-size:.95em;}
+.ac-note{font-size:.72em;color:rgba(255,255,255,.26);text-align:center;margin-top:11px;line-height:1.6;}
+.ac-success{display:none;text-align:center;padding:30px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.2);border-radius:12px;margin-top:8px;}
+.ac-success p{color:var(--gray);font-size:.93em;line-height:1.8;}
+@media(max-width:880px){.audit-wrap{grid-template-columns:1fr;gap:36px;}.audit-card{padding:28px 22px;}}
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 <script defer src="https://analytics.integritywebcreations.com/script.js" data-website-id="951537f3-a78a-48ac-a9a6-bcf36a307792"></script>
@@ -337,6 +359,57 @@ section{position:relative;z-index:2;}
         <p>&#128269; Google is now showing every <strong id="fr-name"></strong> in <strong id="fr-city"></strong>.</p>
         <p class="fr-follow">If your business isn&rsquo;t on that first page, your customers don&rsquo;t know you exist. <a href="contact.html">Let&rsquo;s get you there &rarr;</a></p>
       </div>
+    </div>
+  </div>
+</section>
+<div class="glow-line"></div>
+
+<section id="audit" class="sp">
+  <div class="inner">
+    <div class="audit-wrap">
+
+      <div>
+        <span class="lbl reveal">100% Free &mdash; No Obligation</span>
+        <h2 class="ttl reveal">Get a Free<br><span class="grad-text">Website Audit</span></h2>
+        <p class="sub reveal">Not sure where your site stands? We&rsquo;ll personally review it and give you straight answers &mdash; what&rsquo;s working, what&rsquo;s hurting you, and what we&rsquo;d fix first.</p>
+        <ul class="audit-checklist reveal d2">
+          <li><span class="audit-check"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg></span>Speed &amp; Performance</li>
+          <li><span class="audit-check"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg></span>Mobile Experience</li>
+          <li><span class="audit-check"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg></span>Search Visibility &amp; SEO</li>
+          <li><span class="audit-check"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg></span>Design &amp; First Impression</li>
+          <li><span class="audit-check"><svg viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg"><polyline points="2,6 5,9 10,3"/></svg></span>Calls to Action &amp; Contact Points</li>
+        </ul>
+        <p class="audit-promise reveal d3">No sales pitch. No pressure. Just an honest, expert look at your site.</p>
+      </div>
+
+      <div class="audit-card reveal d2">
+        <h3>Request Your Free Audit</h3>
+        <p class="ac-sub">We&rsquo;ll personally review your site and get back to you within 48 hours.</p>
+        <form id="audit-form">
+          <input type="hidden" name="access_key" value="e2c0e885-5fd0-4658-8a5f-9ee39fd7aed2">
+          <input type="hidden" name="subject" value="Free Website Audit Request — IWC Website">
+          <div class="ac-field">
+            <label for="ac-biz">Business Name</label>
+            <input type="text" id="ac-biz" name="business_name" placeholder="Your business name" autocomplete="organization" required>
+          </div>
+          <div class="ac-field">
+            <label for="ac-url">Website URL</label>
+            <input type="url" id="ac-url" name="website_url" placeholder="https://yourbusiness.com" autocomplete="url" required>
+          </div>
+          <div class="ac-field">
+            <label for="ac-email">Your Email</label>
+            <input type="email" id="ac-email" name="email" placeholder="Where to send your audit" autocomplete="email" required>
+          </div>
+          <div class="ac-submit">
+            <button type="submit" class="btn-primary" id="ac-btn">Get My Free Audit &rarr;</button>
+          </div>
+          <p class="ac-note">We&rsquo;ll review your site personally and respond within 48 hours.<br>No spam, ever.</p>
+        </form>
+        <div class="ac-success" id="ac-success">
+          <p>&#10003; <strong>Audit request received!</strong><br>We&rsquo;ll personally review your site and get back to you within 48 hours.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -601,6 +674,30 @@ const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersect
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'';let cur=0;const step=target/55;const tmr=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(tmr);},28);co.unobserve(el);});},{threshold:.5});
 document.querySelectorAll('.stat-num').forEach(el=>co.observe(el));
+
+(function(){
+  var form=document.getElementById('audit-form');
+  if(!form)return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('ac-btn');
+    btn.textContent='Sending…';btn.disabled=true;
+    try{
+      var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)});
+      var json=await res.json();
+      if(json.success){
+        form.style.display='none';
+        document.getElementById('ac-success').style.display='block';
+      }else{
+        btn.textContent='Get My Free Audit →';btn.disabled=false;
+        alert('Something went wrong. Please try again.');
+      }
+    }catch(err){
+      btn.textContent='Get My Free Audit →';btn.disabled=false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+})();
 
 (function(){
   var form=document.getElementById('referral-form');
