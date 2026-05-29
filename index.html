@@ -173,6 +173,32 @@ section{position:relative;z-index:2;}
 .findable-result .fr-follow a{color:var(--cyan);text-decoration:none;font-weight:600;}
 .findable-result .fr-follow a:hover{text-decoration:underline;}
 @media(max-width:700px){.findable-card{padding:30px 22px;}.findable-inputs{flex-direction:column;}.findable-btn{width:100%;text-align:center;padding:14px;}}
+#referral{background:linear-gradient(180deg,rgba(0,13,26,0) 0%,rgba(0,21,41,0.45) 100%);}
+.referral-intro{text-align:center;margin-bottom:48px;}
+.referral-rewards{display:flex;gap:24px;justify-content:center;margin-bottom:48px;flex-wrap:wrap;}
+.reward-card{flex:1;min-width:240px;max-width:360px;background:rgba(0,13,26,0.72);border:1px solid rgba(0,229,255,0.14);border-radius:18px;padding:36px 28px;text-align:center;transition:border-color .3s,box-shadow .3s;}
+.reward-card:hover{border-color:rgba(0,229,255,0.35);box-shadow:0 12px 40px rgba(0,0,0,0.4);}
+.reward-card.featured{border-color:rgba(0,229,255,0.28);background:rgba(0,21,41,0.85);}
+.reward-icon{font-size:2em;margin-bottom:16px;}
+.reward-who{font-size:.7em;text-transform:uppercase;letter-spacing:2.5px;color:var(--cyan);font-weight:600;margin-bottom:12px;}
+.reward-amount{font-size:2.4em;font-weight:700;line-height:1;margin-bottom:12px;letter-spacing:-1.5px;}
+.reward-label{font-size:.84em;color:rgba(255,255,255,.48);line-height:1.7;}
+.referral-form-wrap{background:rgba(0,13,26,0.72);border:1px solid rgba(0,229,255,0.14);border-radius:20px;padding:44px 48px;max-width:720px;margin:0 auto;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.referral-form-wrap h3{font-size:1.2em;font-weight:700;margin-bottom:6px;text-align:center;}
+.rf-sub{font-size:.85em;color:rgba(255,255,255,.42);text-align:center;margin-bottom:28px;}
+.rf-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.rf-field{display:flex;flex-direction:column;gap:7px;}
+.rf-field.full{grid-column:1/-1;}
+.rf-field label{font-size:.74em;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:600;}
+.rf-field input,.rf-field textarea{background:rgba(0,229,255,0.04);border:1.5px solid rgba(0,229,255,0.18);border-radius:10px;padding:12px 15px;color:white;font-size:.92em;outline:none;transition:border-color .25s,box-shadow .25s;font-family:inherit;}
+.rf-field input::placeholder,.rf-field textarea::placeholder{color:rgba(255,255,255,0.28);}
+.rf-field input:focus,.rf-field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,0.10);}
+.rf-field textarea{resize:vertical;min-height:88px;}
+.rf-submit{margin-top:22px;text-align:center;}
+.rf-note{font-size:.73em;color:rgba(255,255,255,.28);margin-top:12px;text-align:center;}
+.rf-success{display:none;text-align:center;padding:30px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.22);border-radius:12px;margin-top:20px;}
+.rf-success p{color:var(--gray);font-size:.95em;line-height:1.75;}
+@media(max-width:700px){.referral-form-wrap{padding:28px 20px;}.rf-row{grid-template-columns:1fr;}.reward-card{max-width:100%;}}
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 <script defer src="https://analytics.integritywebcreations.com/script.js" data-website-id="951537f3-a78a-48ac-a9a6-bcf36a307792"></script>
@@ -322,6 +348,72 @@ section{position:relative;z-index:2;}
       <div class="stat reveal d1"><div class="stat-num" data-target="15" data-suffix="+">0</div><div class="stat-lbl">Years of Experience</div></div>
       <div class="stat reveal d2"><div class="stat-num" data-target="100" data-suffix="%">0</div><div class="stat-lbl">Client Satisfaction</div></div>
       <div class="stat reveal d3"><div class="stat-num" data-target="24" data-suffix="/7">0</div><div class="stat-lbl">Your Site Is Live</div></div>
+    </div>
+  </div>
+</section>
+<div class="glow-line"></div>
+
+<section id="referral" class="sp">
+  <div class="inner">
+    <div class="referral-intro">
+      <span class="lbl reveal">Referral Program</span>
+      <h2 class="ttl reveal">Know a Business That<br><span class="grad-text">Needs a Website?</span></h2>
+      <p class="sub reveal" style="margin:0 auto;">Send them our way &mdash; we&rsquo;ll take great care of them, and we&rsquo;ll take care of you too.</p>
+    </div>
+    <div class="referral-rewards">
+      <div class="reward-card reveal d1">
+        <div class="reward-icon">🤝</div>
+        <div class="reward-who">Existing Client</div>
+        <div class="reward-amount">1 Free Month</div>
+        <div class="reward-label">of monthly maintenance added<br>to your plan when your<br>referral signs a new project</div>
+      </div>
+      <div class="reward-card featured reveal d2">
+        <div class="reward-icon">💰</div>
+        <div class="reward-who">Open to Everyone</div>
+        <div class="reward-amount">$50 Cash</div>
+        <div class="reward-label">referral fee paid to you<br>when the business you referred<br>signs a new project</div>
+      </div>
+    </div>
+    <div class="referral-form-wrap reveal d3">
+      <h3>Submit a Referral</h3>
+      <p class="rf-sub">Fill this out and we&rsquo;ll reach out to your contact within 24 hours.</p>
+      <form id="referral-form">
+        <input type="hidden" name="access_key" value="e2c0e885-5fd0-4658-8a5f-9ee39fd7aed2">
+        <input type="hidden" name="subject" value="New Referral Submission — IWC Website">
+        <div class="rf-row">
+          <div class="rf-field">
+            <label for="rf-your-name">Your Name</label>
+            <input type="text" id="rf-your-name" name="your_name" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="rf-field">
+            <label for="rf-your-contact">Your Email or Phone</label>
+            <input type="text" id="rf-your-contact" name="your_contact" placeholder="So we can get your reward to you" required>
+          </div>
+        </div>
+        <div class="rf-row">
+          <div class="rf-field">
+            <label for="rf-biz-name">Business You&rsquo;re Referring</label>
+            <input type="text" id="rf-biz-name" name="referred_business" placeholder="Business name" required>
+          </div>
+          <div class="rf-field">
+            <label for="rf-biz-contact">Their Phone or Email</label>
+            <input type="text" id="rf-biz-contact" name="referred_contact" placeholder="How we can reach them" required>
+          </div>
+        </div>
+        <div class="rf-row">
+          <div class="rf-field full">
+            <label for="rf-note">Anything Else We Should Know? <span style="opacity:.5;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <textarea id="rf-note" name="message" placeholder="What does their business do? Any context that would help us reach out..."></textarea>
+          </div>
+        </div>
+        <div class="rf-submit">
+          <button type="submit" class="btn-primary" id="rf-btn" style="padding:14px 44px;font-size:.95em;">Send Referral &rarr;</button>
+        </div>
+        <p class="rf-note">We&rsquo;ll reach out to your contact within 24 hours and keep you in the loop.</p>
+      </form>
+      <div class="rf-success" id="rf-success">
+        <p>🎉 <strong>Referral received!</strong> We&rsquo;ll reach out to them within 24 hours.<br>Thank you &mdash; your reward is on its way once they sign.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -509,6 +601,30 @@ const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersect
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'';let cur=0;const step=target/55;const tmr=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=Math.floor(cur)+suffix;if(cur>=target)clearInterval(tmr);},28);co.unobserve(el);});},{threshold:.5});
 document.querySelectorAll('.stat-num').forEach(el=>co.observe(el));
+
+(function(){
+  var form=document.getElementById('referral-form');
+  if(!form)return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('rf-btn');
+    btn.textContent='Sending…';btn.disabled=true;
+    try{
+      var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)});
+      var json=await res.json();
+      if(json.success){
+        form.style.display='none';
+        document.getElementById('rf-success').style.display='block';
+      }else{
+        btn.textContent='Send Referral →';btn.disabled=false;
+        alert('Something went wrong. Please try again.');
+      }
+    }catch(err){
+      btn.textContent='Send Referral →';btn.disabled=false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+})();
 
 function checkFindable(e){
   e.preventDefault();
