@@ -152,11 +152,11 @@ section{position:relative;z-index:2;}
 #mouse-slider.clicking #left-btn{fill:#82bdf5;filter:drop-shadow(0 0 10px rgba(0,229,255,1));}
 #hero>div:first-child{background:rgba(0,10,22,0.70);border:1px solid rgba(255,255,255,0.07);border-radius:28px;padding:62px 70px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);box-shadow:0 8px 40px rgba(0,0,0,0.45);}
 @media(max-width:960px){#hero>div:first-child{padding:40px 28px;border-radius:20px;}}
-#sms-btn{position:fixed;bottom:28px;left:28px;z-index:100;display:flex;align-items:center;gap:9px;background:rgba(0,13,26,0.88);border:1.5px solid rgba(0,229,255,0.38);color:var(--cyan);padding:11px 20px 11px 14px;border-radius:50px;text-decoration:none;font-size:.82em;font-weight:600;letter-spacing:.5px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.45);transition:all .3s ease;animation:smsPulse 3s ease 5s 2;}
+#sms-btn{position:fixed;bottom:28px;left:28px;z-index:100;display:none;align-items:center;gap:9px;background:rgba(0,13,26,0.88);border:1.5px solid rgba(0,229,255,0.38);color:var(--cyan);padding:11px 20px 11px 14px;border-radius:50px;text-decoration:none;font-size:.82em;font-weight:600;letter-spacing:.5px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 4px 24px rgba(0,0,0,0.45);transition:all .3s ease;animation:smsPulse 3s ease 5s 2;}
 #sms-btn:hover{background:rgba(0,229,255,0.09);border-color:var(--cyan);box-shadow:0 6px 30px rgba(0,229,255,0.22);transform:translateY(-2px);}
 #sms-btn svg{width:17px;height:17px;flex-shrink:0;}
 @keyframes smsPulse{0%,100%{box-shadow:0 4px 24px rgba(0,0,0,0.45),0 0 0 0 rgba(0,229,255,0.4)}60%{box-shadow:0 4px 24px rgba(0,0,0,0.45),0 0 0 12px rgba(0,229,255,0)}}
-@media(max-width:600px){#sms-btn span{display:none;}#sms-btn{padding:13px;border-radius:50%;}}
+@media(max-width:600px){#sms-btn{display:flex;padding:13px;border-radius:50%;}#sms-btn span{display:none;}}
 #findable{background:linear-gradient(180deg,rgba(0,13,26,0) 0%,rgba(0,21,41,0.55) 100%);}
 .findable-card{background:rgba(0,13,26,0.72);border:1px solid rgba(0,229,255,0.15);border-radius:20px;padding:48px 52px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);max-width:820px;margin:48px auto 0;}
 .findable-inputs{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap;}
