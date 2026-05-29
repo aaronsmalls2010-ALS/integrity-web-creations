@@ -317,13 +317,13 @@ section{position:relative;z-index:2;}
   <div class="inner" style="text-align:center;">
     <span class="lbl reveal">Quick Check</span>
     <h2 class="ttl reveal">Can Your Customers<br><span class="grad-text">Find You Online?</span></h2>
-    <p class="sub reveal" style="margin:0 auto;">Type your business name and city below. We'll show you exactly what Google sees &mdash; and what your customers don't.</p>
+    <p class="sub reveal" style="margin:0 auto;">Enter your business type and city. See who Google puts in front of your customers &mdash; and whether you&rsquo;re one of them.</p>
     <div class="findable-card reveal d2">
       <form id="findable-form" onsubmit="return checkFindable(event)">
         <div class="findable-inputs">
           <div class="findable-field">
-            <label for="biz-name">Business Name</label>
-            <input type="text" id="biz-name" name="biz-name" placeholder="e.g. Joe's Hardware" autocomplete="organization" required>
+            <label for="biz-type">Business Type</label>
+            <input type="text" id="biz-type" name="biz-type" placeholder="e.g. barber, mechanic, lawyer" autocomplete="off" required>
           </div>
           <div class="findable-field">
             <label for="biz-city">City &amp; State</label>
@@ -334,8 +334,8 @@ section{position:relative;z-index:2;}
         <p class="findable-note">Opens a live Google search in a new tab &mdash; nothing is stored or sent to us.</p>
       </form>
       <div class="findable-result" id="findable-result" aria-live="polite" hidden>
-        <p>&#128269; Google is now showing results for <strong id="fr-name"></strong> in <strong id="fr-city"></strong>.</p>
-        <p class="fr-follow">If your business isn&rsquo;t on page one, your customers are finding your competition instead. <a href="contact.html">Let&rsquo;s fix that &rarr;</a></p>
+        <p>&#128269; Google is now showing every <strong id="fr-name"></strong> in <strong id="fr-city"></strong>.</p>
+        <p class="fr-follow">If your business isn&rsquo;t on that first page, your customers don&rsquo;t know you exist. <a href="contact.html">Let&rsquo;s get you there &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -628,7 +628,7 @@ document.querySelectorAll('.stat-num').forEach(el=>co.observe(el));
 
 function checkFindable(e){
   e.preventDefault();
-  var name=document.getElementById('biz-name').value.trim();
+  var name=document.getElementById('biz-type').value.trim();
   var city=document.getElementById('biz-city').value.trim();
   if(!name||!city)return false;
   var q=encodeURIComponent(name+' '+city);
