@@ -221,6 +221,29 @@ section{position:relative;z-index:2;}
 .ac-success{display:none;text-align:center;padding:30px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.2);border-radius:12px;margin-top:8px;}
 .ac-success p{color:var(--gray);font-size:.93em;line-height:1.8;}
 @media(max-width:880px){.audit-wrap{grid-template-columns:1fr;gap:36px;}.audit-card{padding:28px 22px;}}
+#guide{background:linear-gradient(180deg,rgba(0,13,26,0) 0%,rgba(0,21,41,0.6) 100%);}
+.guide-capture{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1040px;margin:0 auto;}
+.guide-preview-title{font-size:clamp(1.5em,3vw,2.4em);font-weight:700;letter-spacing:-.5px;line-height:1.15;margin-bottom:18px;}
+.guide-preview-sub{font-size:.95em;color:var(--gray);line-height:1.8;margin-bottom:28px;}
+.guide-toc{list-style:none;}
+.guide-toc li{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.9em;color:rgba(255,255,255,.7);line-height:1.5;}
+.guide-toc li:first-child{border-top:1px solid rgba(255,255,255,.06);}
+.toc-num{font-size:1.1em;font-weight:800;background:linear-gradient(135deg,#0066ff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;flex-shrink:0;line-height:1.3;}
+.guide-form-card{background:rgba(0,13,26,0.75);border:1px solid rgba(0,229,255,.15);border-radius:20px;padding:40px 38px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+.guide-form-card h3{font-size:1.2em;font-weight:700;margin-bottom:6px;}
+.gf-sub{font-size:.84em;color:rgba(255,255,255,.42);margin-bottom:26px;line-height:1.6;}
+.gf-field{display:flex;flex-direction:column;gap:7px;margin-bottom:15px;}
+.gf-field label{font-size:.74em;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:600;}
+.gf-field input{background:rgba(0,229,255,0.04);border:1.5px solid rgba(0,229,255,0.18);border-radius:10px;padding:12px 15px;color:white;font-size:.92em;outline:none;transition:border-color .25s,box-shadow .25s;font-family:inherit;width:100%;}
+.gf-field input::placeholder{color:rgba(255,255,255,0.28);}
+.gf-field input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,0.10);}
+.gf-submit{margin-top:20px;}
+.gf-submit button{width:100%;padding:15px;font-size:.95em;}
+.gf-note{font-size:.72em;color:rgba(255,255,255,.26);text-align:center;margin-top:11px;line-height:1.6;}
+.gf-success{display:none;text-align:center;padding:28px 20px;}
+.gf-success p{color:var(--gray);font-size:.95em;line-height:1.75;margin-bottom:20px;}
+.gf-success a{display:inline-block;}
+@media(max-width:880px){.guide-capture{grid-template-columns:1fr;gap:40px;}.guide-form-card{padding:28px 22px;}}
 </style>
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 <script defer src="https://analytics.integritywebcreations.com/script.js" data-website-id="951537f3-a78a-48ac-a9a6-bcf36a307792"></script>
@@ -493,6 +516,51 @@ section{position:relative;z-index:2;}
   </div>
 </section>
 
+<section id="guide" class="sp">
+  <div class="inner">
+    <div class="guide-capture">
+      <div class="guide-preview">
+        <span class="lbl">Free Download</span>
+        <h2 class="guide-preview-title">Is Your Website Quietly <span class="grad-text">Losing You Business?</span></h2>
+        <p class="guide-preview-sub">We put together a free guide covering the 5 most common mistakes we see in small business websites &mdash; and exactly what you can do about each one.</p>
+        <ul class="guide-toc" aria-label="Guide contents">
+          <li><span class="toc-num">01</span><span>Your site takes too long to load &mdash; and half your visitors leave before it's done</span></li>
+          <li><span class="toc-num">02</span><span>It doesn&rsquo;t look right on phones, and 63% of traffic is mobile</span></li>
+          <li><span class="toc-num">03</span><span>Google can&rsquo;t find you, so your customers can&rsquo;t either</span></li>
+          <li><span class="toc-num">04</span><span>Your design looks dated, and 75% of people judge credibility by appearance</span></li>
+          <li><span class="toc-num">05</span><span>There&rsquo;s no clear next step, and up to 70% of leads quietly walk away</span></li>
+        </ul>
+      </div>
+      <div class="guide-form-card">
+        <h3>Get Instant Access</h3>
+        <p class="gf-sub">Free. No spam. Just practical insights you can act on today.</p>
+        <form id="guide-form" novalidate>
+          <input type="hidden" name="access_key" value="e2c0e885-5fd0-4658-8a5f-9ee39fd7aed2">
+          <input type="hidden" name="subject" value="Free Guide Request — 5 Signs Your Website Is Costing You Customers">
+          <input type="hidden" name="from_name" value="IWC Website">
+          <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="gf-field">
+            <label for="gf-name">Your Name</label>
+            <input type="text" id="gf-name" name="name" placeholder="Jane Smith" required autocomplete="name">
+          </div>
+          <div class="gf-field">
+            <label for="gf-email">Email Address</label>
+            <input type="email" id="gf-email" name="email" placeholder="jane@yourbusiness.com" required autocomplete="email">
+          </div>
+          <div class="gf-submit">
+            <button type="submit" class="btn-primary" id="gf-btn">Send Me the Guide &rarr;</button>
+          </div>
+          <p class="gf-note">We&rsquo;ll never share your info. Unsubscribe anytime.</p>
+        </form>
+        <div class="gf-success" id="gf-success">
+          <p>&#127775; <strong>You&rsquo;re all set!</strong><br>Your guide is ready to read right now. Click below to open it &mdash; you can save it as a PDF from your browser.</p>
+          <a href="/5-signs" target="_blank" rel="noopener" class="btn-primary">Open Your Free Guide &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="home-cta">
   <h2 class="reveal">Ready for a Website That <span class="grad-text">Works For You?</span></h2>
   <p class="reveal d2">Custom-built. Fully managed. Built around your budget. Let's have a real conversation about what your business deserves online.</p>
@@ -720,6 +788,30 @@ document.querySelectorAll('.stat-num').forEach(el=>co.observe(el));
       }
     }catch(err){
       btn.textContent='Send Referral →';btn.disabled=false;
+      alert('Something went wrong. Please try again.');
+    }
+  });
+})();
+
+(function(){
+  var form=document.getElementById('guide-form');
+  if(!form)return;
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    var btn=document.getElementById('gf-btn');
+    btn.textContent='Sending…';btn.disabled=true;
+    try{
+      var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)});
+      var json=await res.json();
+      if(json.success){
+        form.style.display='none';
+        document.getElementById('gf-success').style.display='block';
+      }else{
+        btn.textContent='Send Me the Guide →';btn.disabled=false;
+        alert('Something went wrong. Please try again.');
+      }
+    }catch(err){
+      btn.textContent='Send Me the Guide →';btn.disabled=false;
       alert('Something went wrong. Please try again.');
     }
   });
